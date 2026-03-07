@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="ERPDataAnalytics.Application.cs/ERPDataAnalytics.Application.cs.csproj" />
+  <Project Path="ERPDataAnalytics.domain.cs/ERPDataAnalytics.domain.cs.csproj" />
+  <Project Path="ERPDataAnalytics.Infrastructure.cs/ERPDataAnalytics.Infrastructure.cs.csproj" />
+  <Project Path="ERPDataAnalytics/ERPDataAnalytics.csproj" />
+</Solution>
