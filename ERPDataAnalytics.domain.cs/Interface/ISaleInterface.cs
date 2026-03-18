@@ -14,11 +14,11 @@ namespace ERPDataAnalytics.domain.cs.Interface
         Task<Sale> GetSaleById(int id);
 
 
-        Task CreateSale(Sale model);
+        Task <Sale> CreateSale(Sale model);
 
 
-        Task<Sale> DeleteSale(int id);
+        Task<bool> DeleteSale(int id);
 
-        Task UpdateSale(Sale model);
+        Task <Sale> UpdateSale(Sale model);
     }
 }

@@ -17,10 +17,11 @@ namespace ERPDataAnalytics.Infrastructure.cs.Repository
             _dataContext = dataContext;
         }
 
-        public async Task CreateUser(User model)
+        public async Task<User> CreateUser(User model)
         {
-            await _dataContext.Users.AddAsync(model);
+           await _dataContext.Users.AddAsync(model);
             await _dataContext.SaveChangesAsync();
+            return model;
 
         }
 
@@ -33,6 +34,12 @@ namespace ERPDataAnalytics.Infrastructure.cs.Repository
                 await _dataContext.SaveChangesAsync();
             }
             return null;
+        }
+
+        public async Task<User> GetByEmail(string email, CancellationToken cancellationToken)
+        {
+            var res= await _dataContext.Users.Where(x=>x.Email==email).FirstOrDefaultAsync();
+            return res;
         }
 
         public async Task<User> GetUserById(int id)
@@ -56,7 +63,7 @@ namespace ERPDataAnalytics.Infrastructure.cs.Repository
                 updatedata.BranchId = model.BranchId;
                 updatedata.CompanyId = model.CompanyId;
                 updatedata.EmployeeId = model.EmployeeId;
-                updatedata.RoleName=model.RoleName;
+                updatedata.RoleId=model.RoleId;
                     _dataContext.Users.Update(updatedata);
                 await _dataContext.SaveChangesAsync();
 

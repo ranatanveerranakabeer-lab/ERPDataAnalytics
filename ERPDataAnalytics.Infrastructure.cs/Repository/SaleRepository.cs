@@ -17,51 +17,66 @@ namespace ERPDataAnalytics.Infrastructure.cs.Repository
             _dataContext = dataContext;
         }
 
-        public async Task<Sale> DeleteSale(int id)
+        public async Task<Sale> CreateSale(Sale model)
         {
-            var res = await _dataContext.Sales.Where(x => x.Id == id).FirstOrDefaultAsync();
-            if (res != null)
-            {
-                _dataContext.Sales.Remove(res);
-                await _dataContext.SaveChangesAsync();
-            }
-            return null;
-        }
-        public async Task CreateSale(Sale model)
-        {
-            await _dataContext.Sales.AddAsync(model);
+           await _dataContext.AddAsync(model);
             await _dataContext.SaveChangesAsync();
-
+            return model;
         }
+
+        public async Task<bool> DeleteSale(int id)
+        {
+          var res=  await _dataContext.Sales.Where(X => X.Id == id).FirstOrDefaultAsync();
+            if(res==null)
+                return false;
+            _dataContext.Sales.Remove(res);
+            await _dataContext.SaveChangesAsync();
+            return true;
+        }
+
         public async Task<Sale> GetSaleById(int id)
         {
-            return await _dataContext.Sales.FindAsync(id);
+          return await _dataContext.Sales.Include(x=>x.SaleItemId).FirstOrDefaultAsync(x=>x.Id==id); 
         }
 
         public async Task<List<Sale>> GetSaleList()
         {
-            return await _dataContext.Sales.ToListAsync();
+           var res= await _dataContext.Sales.Include(x=>x.SaleItemId).ToListAsync(); 
+            return res;
         }
 
-        public async Task UpdateSale(Sale model)
+        public async Task<Sale> UpdateSale(Sale model)
         {
-            var updatedata = await _dataContext.Sales.FirstOrDefaultAsync(x => x.Id == model.Id);
-            if (updatedata != null)
+           var existingsale= await _dataContext.Sales.Include(x => x.SaleItemId).FirstOrDefaultAsync(x => x.Id == model.Id);
+            if (existingsale == null)
+                return null;
+           existingsale.BranchId=model.BranchId;
+            existingsale.CompanyId=model.CompanyId;
+            existingsale.InvoiceNumber=model.InvoiceNumber;
+            existingsale.CustomerId=model.CustomerId;
+            existingsale.DiscountAmount=model.DiscountAmount;
+            existingsale.NetAmount=model.NetAmount;
+            existingsale.PaidAmount=model.PaidAmount;
+            existingsale.TotalAmount=model.TotalAmount;
+            existingsale.SaleDate=model.SaleDate;
+
+            _dataContext.SaleItems.RemoveRange(existingsale.SaleItems);
+            existingsale.SaleItems = new List<SaleItem>();
+            foreach (var item in existingsale.SaleItems)
             {
-
-                updatedata.SaleDate = model.SaleDate;
-                updatedata.InvoiceNumber = model.InvoiceNumber;
-                updatedata.BranchId = model.BranchId;
-                updatedata.CustomerId = model.CustomerId;
-                updatedata.CompanyId = model.CompanyId;
-                updatedata.DiscountAmount = model.DiscountAmount;
-                updatedata.NetAmount = model.NetAmount;
-                updatedata.TotalAmount = model.TotalAmount;
-
-                _dataContext.Sales.Update(updatedata);
-                await _dataContext.SaveChangesAsync();
-
+                var saleitemlist = new SaleItem
+                {
+                    ProductId = item.ProductId,
+                    UnitPrice = item.UnitPrice,
+                    Quantity = item.Quantity,
+                    Total = item.Quantity * item.UnitPrice
+                                    };
+                existingsale.SaleItems.Add(saleitemlist);
             }
+
+          await _dataContext.SaveChangesAsync();
+            return existingsale;
+  
         }
     }
 }

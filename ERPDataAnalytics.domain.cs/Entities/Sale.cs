@@ -10,6 +10,8 @@ namespace ERPDataAnalytics.domain.cs.Entities
         public class Sale
         {
             public int Id { get; set; }
+            public int SaleItemId { get; set; }
+
             public int CompanyId { get; set; }
             public int BranchId { get; set; }
             public string InvoiceNumber { get; set; }
@@ -19,6 +21,7 @@ namespace ERPDataAnalytics.domain.cs.Entities
             public decimal DiscountAmount { get; set; }
             public decimal NetAmount { get; set; }
             public decimal PaidAmount { get; set; }
+        public List<SaleItem> SaleItems { get; set; }
         }
     }
 

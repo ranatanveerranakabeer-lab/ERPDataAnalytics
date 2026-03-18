@@ -145,3 +145,4 @@ C:\Users\Sidra\source\repos\DataAnalytics\ERPDataAnalytics\ERPDataAnalytics\obj\
 C:\Users\Sidra\source\repos\DataAnalytics\ERPDataAnalytics\ERPDataAnalytics\obj\Debug\net8.0\ERPDataAnalytics.pdb
 C:\Users\Sidra\source\repos\DataAnalytics\ERPDataAnalytics\ERPDataAnalytics\obj\Debug\net8.0\ERPDataAnalytics.genruntimeconfig.cache
 C:\Users\Sidra\source\repos\DataAnalytics\ERPDataAnalytics\ERPDataAnalytics\obj\Debug\net8.0\ref\ERPDataAnalytics.dll
+C:\Users\Sidra\source\repos\DataAnalytics\ERPDataAnalytics\ERPDataAnalytics\bin\Debug\net8.0\BCrypt.Net-Next.dll

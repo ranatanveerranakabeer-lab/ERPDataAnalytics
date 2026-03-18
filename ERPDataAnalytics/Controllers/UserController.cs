@@ -1,4 +1,5 @@
-﻿using ERPDataAnalytics.Application.cs.Interface;
+﻿using ERPDataAnalytics.Application.cs.DTO.User;
+using ERPDataAnalytics.Application.cs.Interface;
 using ERPDataAnalytics.domain.cs.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -46,6 +47,29 @@ namespace ERPDataAnalytics.Controllers
             var result = await _Userservice.AddUser(dto);
             return Ok(result);
         }
+
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login([FromBody] LoginDTO dto,CancellationToken cancellationToken) //ab create kro
+        {
+            var result = await _Userservice.LoginUser(dto,cancellationToken);
+
+            if (!result.Success)
+                return BadRequest(result);
+            return Ok(result);
+        }
+
+        [HttpPost("Sinup")]
+        public async Task<IActionResult> Signup([FromBody]User dto, CancellationToken cancellationToken) //ab create kro
+        {
+            var result = await _Userservice.Signup(dto, cancellationToken);
+
+            if (!result.Success)
+                return BadRequest(result);
+            return Ok(result);
+        }
+
+
+
 
 
         [HttpPut("{id:int}")]

@@ -12,12 +12,12 @@ namespace ERPDataAnalytics.domain.cs.Interface
         Task<List<User>> GetUserList();
 
         Task<User> GetUserById(int id);
+       
+        Task <User> CreateUser(User model);
 
-
-        Task CreateUser(User model);
-
-
+        Task<User> GetByEmail(string email, CancellationToken cancellationToken );
         Task<User> DeleteUser(int id);
+
 
         Task  UpdateUser(User model);
     }

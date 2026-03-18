@@ -1,4 +1,5 @@
-﻿using ERPDataAnalytics.Application.cs.Model;
+﻿using ERPDataAnalytics.Application.cs.DTO.User;
+using ERPDataAnalytics.Application.cs.Model;
 using ERPDataAnalytics.domain.cs.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,15 @@ namespace ERPDataAnalytics.Application.cs.Interface
 
         Task<ResponseDataModel<User>> GetById(int id);
 
+        Task<ResponseDataModel<LoginResponseDTO>> LoginUser( LoginDTO  login, CancellationToken  cancellationToken);
+        Task<ResponseDataModel<bool>> Signup( User  signupuser, CancellationToken  cancellationToken);
+
+
         Task<ResponseDataModel<bool>> DeleteUser(int id);
 
         Task<ResponseDataModel<User>> UpdateUser(int id, User model);
 
 
-        Task<ResponseDataModel<User>> AddUser(User model);
+        Task<ResponseDataModel<User>> AddUser(User dto);
     }
 }

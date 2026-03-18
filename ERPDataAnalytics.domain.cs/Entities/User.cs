@@ -13,8 +13,9 @@ namespace ERPDataAnalytics.domain.cs.Entities
         public int BranchId { get; set; }
         public int EmployeeId { get; set; }
         public string? Username { get; set; }
+        public string? Email { get; set; }
         public string?   PasswordHash { get; set; } // encrypted hu ga
-        public string? RoleName { get; set; }
+        public int  RoleId { get; set; }
         public bool IsActive { get; set; }
     }
 }
