@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ERPDataAnalytics.Infrastructure.cs.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20260315203540_init")]
+    [Migration("20260405141858_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -511,6 +511,8 @@ namespace ERPDataAnalytics.Infrastructure.cs.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SaleId");
+
                     b.ToTable("SaleItems");
                 });
 
@@ -648,6 +650,20 @@ namespace ERPDataAnalytics.Infrastructure.cs.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Vendors");
+                });
+
+            modelBuilder.Entity("ERPDataAnalytics.domain.cs.Entities.SaleItem", b =>
+                {
+                    b.HasOne("ERPDataAnalytics.domain.cs.Entities.Sale", null)
+                        .WithMany("SaleItems")
+                        .HasForeignKey("SaleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ERPDataAnalytics.domain.cs.Entities.Sale", b =>
+                {
+                    b.Navigation("SaleItems");
                 });
 #pragma warning restore 612, 618
         }

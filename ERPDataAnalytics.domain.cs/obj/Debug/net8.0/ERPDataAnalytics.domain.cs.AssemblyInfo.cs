@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ERPDataAnalytics.domain.cs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0808897f8e1af4269fa4b5f98a3559eab97ad1c0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a476c81550f40d48e9620e1e5d358c847ca5cbda")]
 [assembly: System.Reflection.AssemblyProductAttribute("ERPDataAnalytics.domain.cs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ERPDataAnalytics.domain.cs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

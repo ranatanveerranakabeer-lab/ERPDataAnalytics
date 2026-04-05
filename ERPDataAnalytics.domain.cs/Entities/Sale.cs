@@ -10,8 +10,6 @@ namespace ERPDataAnalytics.domain.cs.Entities
         public class Sale
         {
             public int Id { get; set; }
-            public int SaleItemId { get; set; }
-
             public int CompanyId { get; set; }
             public int BranchId { get; set; }
             public string InvoiceNumber { get; set; }

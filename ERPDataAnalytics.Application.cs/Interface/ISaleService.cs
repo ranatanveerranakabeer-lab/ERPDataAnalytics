@@ -1,24 +1,21 @@
 ﻿using ERPDataAnalytics.Application.cs.DTO.Sale;
 using ERPDataAnalytics.Application.cs.Model;
-using ERPDataAnalytics.domain.cs.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ERPDataAnalytics.Application.cs.Interface
 {
     public interface ISaleService
     {
-        Task<ResponseDataModel<Sale>> CreateSaleAsync(SaleDTO dto);
-        Task<ResponseDataModel<List<Sale>>> GetAllAsync();
-        Task<ResponseDataModel<Sale>> GetByIdAsync(int id);
+        Task<ResponseDataModel<SaleResponseDTO>> CreateSaleAsync(SaleCreateDTO dto);
+        Task<ResponseDataModel<List<SaleResponseDTO>>> GetAllAsync();
+        Task<ResponseDataModel<SaleResponseDTO>> GetByIdAsync(int id);
+        Task<ResponseDataModel<SaleResponseDTO>> UpdateSaleAsync(SaleUpdateDTO dto);
         Task<ResponseDataModel<bool>> DeleteAsync(int id);
-
-        Task<ResponseDataModel<Sale>> UpdateSale(int id, Sale model);
-
-
+        Task<ResponseDataModel<List<SaleReportDTO>>> GetSaleReportAsync();
+        Task<ResponseDataModel<List<SaleReportDTO>>> GetSaleReportByDateAsync(DateTime fromDate, DateTime toDate);
+        Task<ResponseDataModel<List<SaleReportDTO>>> GetSaleReportByCustomerAsync(int customerId);
+        Task<ResponseDataModel<SaleSummaryDTO>> GetSaleSummaryAsync();
     }
-
 }
